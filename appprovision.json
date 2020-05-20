@@ -1,0 +1,44 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+    "region_default": "{{env `AWS_DEFAULT_REGION`}}"
+  },
+  "builders": [
+    {
+      "name": "laa",
+      "type": "amazon-ebs",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "region": "{{user `region_default`}}",
+      "ssh_username": "ec2-user",
+      "ssh_keypair_name": "laachallenge1",
+      "ssh_private_key_file": "/home/ilegra/aws/laachallenge1.pem",
+      "source_ami": "ami-0323c3dd2da7fb37d",
+      "ami_name": "laa",
+      "instance_type": "t2.micro",
+      "tags": {
+        "Name": "laa",
+        "OS_Version": "Amazon Linux/CentOs",
+        "Release": "Latest",
+        "Author": "neves-eduardo"
+      }
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum -y install python3 python3-pip",
+        "sudo pip3 install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansibleprovision.yml",
+      "role_paths": [
+        "roles/java"
+      ]
+    }
+  ]
+}

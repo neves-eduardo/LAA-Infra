@@ -1,0 +1,5 @@
+- name: ec2 provision
+  hosts: all
+  become: yes
+  roles:
+    - java

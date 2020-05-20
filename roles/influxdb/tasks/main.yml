@@ -1,0 +1,7 @@
+
+- name: Install InfluxDB 
+  yum: 
+    name: influxdb
+    state: present
+
+
