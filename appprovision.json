@@ -30,7 +30,12 @@
       "type": "file",
       "source": "build/libs/LAA.jar",
       "destination": "/home/ec2-user/"
-  },
+  },    
+    {
+      "type": "file",
+      "source": "src/main/resources/config.properties",
+      "destination": "/home/ec2-user/"
+    },
     {
       "type": "shell",
       "inline": [
