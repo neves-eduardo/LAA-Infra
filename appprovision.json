@@ -27,6 +27,11 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "./build/libs/LAA.jar",
+      "destination": "/home/ec2-user"
+  },
+    {
       "type": "shell",
       "inline": [
         "sudo yum -y install python3 python3-pip",
