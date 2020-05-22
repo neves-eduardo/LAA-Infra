@@ -3,7 +3,7 @@
     "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
     "region_default": "{{env `AWS_DEFAULT_REGION`}}",
-    "key_dir" : "{{env `KEY_DIR}}"
+    "key_dir": "{{env `KEY_DIR}}"
   },
   "builders": [
     {
