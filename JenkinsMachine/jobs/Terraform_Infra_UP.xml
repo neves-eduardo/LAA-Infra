@@ -1,0 +1,61 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@4.2.2">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.com/neves-eduardo/LAA-Infra</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>terraform init</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>terraform apply -auto-approve </command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.23">
+      <bindings>
+        <com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding plugin="aws-credentials@1.28">
+          <credentialsId>d939db75-302f-4520-8710-8af08ad6b6ac</credentialsId>
+          <accessKeyVariable>AWS_ACCESS_KEY_ID</accessKeyVariable>
+          <secretKeyVariable>AWS_SECRET_ACCESS_KEY</secretKeyVariable>
+        </com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+    <org.jenkinsci.plugins.terraform.TerraformBuildWrapper plugin="terraform@1.0.10">
+      <variables></variables>
+      <doDestroy>true</doDestroy>
+      <doGetUpdate>true</doGetUpdate>
+      <doNotApply>true</doNotApply>
+      <config>
+        <value>inline</value>
+        <inlineConfig></inlineConfig>
+        <mode>INLINE</mode>
+      </config>
+      <terraformInstallation>terraform</terraformInstallation>
+    </org.jenkinsci.plugins.terraform.TerraformBuildWrapper>
+  </buildWrappers>
+</project>

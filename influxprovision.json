@@ -13,7 +13,7 @@
         "region": "{{user `region_default`}}",
         "ssh_username": "ec2-user",
         "ssh_keypair_name": "laachallenge1",
-        "ssh_private_key_file": "/home/ilegra/aws/laachallenge1.pem",
+        "ssh_private_key_file": "/laachallenge1.pem",
         "source_ami": "ami-0323c3dd2da7fb37d",
         "ami_name": "laa-influxdb",
         "instance_type": "t2.micro",

@@ -6,7 +6,7 @@
   },
   "builders": [
     {
-      "name": "laa",
+      "name": "laa-jenkins",
       "type": "amazon-ebs",
       "access_key": "{{user `aws_access_key`}}",
       "secret_key": "{{user `aws_secret_key`}}",
@@ -15,10 +15,10 @@
       "ssh_keypair_name": "laachallenge1",
       "ssh_private_key_file": "/laachallenge1.pem",
       "source_ami": "ami-0323c3dd2da7fb37d",
-      "ami_name": "laa",
+      "ami_name": "laa-jenkins",
       "instance_type": "t2.micro",
       "tags": {
-        "Name": "laa",
+        "Name": "laa-jenkins",
         "OS_Version": "Amazon Linux/CentOs",
         "Release": "Latest",
         "Author": "neves-eduardo"
@@ -27,13 +27,14 @@
   ],
   "provisioners": [
     {
-      "type": "file",
-      "source": "build/libs/LAA.jar",
-      "destination": "/home/ec2-user/"
-  },    
+      "type": "shell",
+      "inline": [
+        "wget https://updates.jenkins-ci.org/latest/jenkins.war"
+      ]
+    },
     {
       "type": "file",
-      "source": "src/main/resources/config.properties",
+      "source": "JenkinsMachine/jobs",
       "destination": "/home/ec2-user/"
     },
     {
@@ -45,9 +46,10 @@
     },
     {
       "type": "ansible-local",
-      "playbook_file": "ansibleprovision.yml",
+      "playbook_file": "ansibleprovisionjenkins.yml",
       "role_paths": [
-        "roles/java"
+        "roles/java",
+        "roles/jenkins"
       ]
     }
   ]
