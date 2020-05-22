@@ -60,7 +60,7 @@
       "type": "shell",
       "inline": [
          "sudo cp laa.service /lib/systemd/system/.",
-         "sudo chmod 644 /etc/systemd/system/myservice.service",
+         "sudo chmod 644 /etc/systemd/system/laa.service",
          "sudo systemctl start laa",
          "sudo systemctl enable laa"
       ]
