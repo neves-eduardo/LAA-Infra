@@ -1,7 +1,7 @@
 [Unit]
 Description=LAA service
 [Service]
-ExecStart=/usr/bin/java -jar /home/ec2-user/LAA.jar
+ExecStart=/usr/bin/java -jar -Dconfigpath="/home/ec2-user/config.properties" /home/ec2-user/LAA.jar
 User=root
 Type=simple
 [Install]
