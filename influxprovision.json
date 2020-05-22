@@ -14,6 +14,7 @@
         "secret_key": "{{user `aws_secret_key`}}",
         "region": "{{user `region_default`}}",
         "ssh_username": "ec2-user",
+        "ssh_keypair_name": "laachallenge1",
         "ssh_private_key_file": "{{user `key_dir`}}",
         "source_ami": "ami-0323c3dd2da7fb37d",
         "ami_name": "laa-influxdb",

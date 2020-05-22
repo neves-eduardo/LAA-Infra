@@ -1,9 +1,9 @@
 {
   "variables": {
+    "key_dir": "{{env `KEY_DIR`}}",
     "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
     "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
-    "region_default": "{{env `AWS_DEFAULT_REGION`}}",
-    "key_dir": "{{env `KEY_DIR}}"
+    "region_default": "{{env `AWS_DEFAULT_REGION`}}"
   },
   "builders": [
     {
@@ -13,6 +13,7 @@
       "secret_key": "{{user `aws_secret_key`}}",
       "region": "{{user `region_default`}}",
       "ssh_username": "ec2-user",
+      "ssh_keypair_name": "laachallenge1",
       "ssh_private_key_file": "{{user `key_dir`}}",
       "source_ami": "ami-0323c3dd2da7fb37d",
       "ami_name": "laa",
